@@ -33,13 +33,7 @@
 
 <script>
     d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/All_Cumulative.csv?token=AESTQKVVG3NSLJQEPMBWRBC44RG5S",function(err,data){ 
-      //get each key of the data that is not date
-      //these will be our key in the key/value pair
-      //the values x and y will be month and the value
-      var historicalBarChart = Object.keys(data[0]).filter(function(k){return k!="metric"}) 
-
-	
-	
+      var historicalBarChart = Object.keys(data[0]).filter(function(k){return k!="metric"}) 	
         .map(function(k){
 
           return {"key":k,
@@ -53,24 +47,20 @@
 		console.log(historicalBarChart);
 	
     nv.addGraph(function() {
-        var chart = nv.models.multiBarHorizontalChart()
-		
-        .showLegend(false)
-		.showControls(false)
-        .stacked(true);
+        var chart = nv.models.discreteBarChart() 
+
 		
         chart.yAxis
-            //.tickFormat(d3.format(',.0f'))
 			.tickFormat(d3.format('.2s'))
             .axisLabelDistance(0);
 
         chart
-			.color(['#329ccd', '#716f6f', '#d1871f'])
+			.color(["#329ccd", "#d1871f", "#716f6f"])
 			.margin({"left":75, "right":75})
         d3.select('#chart1 svg')
             .datum(historicalBarChart)
             .call(chart);
-		
+			
         nv.utils.windowResize(chart.update);
         return chart;
     });
