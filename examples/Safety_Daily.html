@@ -68,7 +68,38 @@ d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/Saf
 		chart.xScale(d3.time.scale());
 
 		chart.interactiveLayer
-			.tooltip
+			.tooltip.contentGenerator(function(d) {
+					  var header = d.value;
+					  var headerhtml =
+						"<thead><tr><td colspan='3'><strong class='x-value'>" +
+						header +
+						"</strong></td></tr></thead>";
+					  var bodyhtml = "<tbody>";
+					  var footer = "<tfoot>";
+					  var sum=0;
+					  var series = d.series;
+					  series.forEach(function(c) {
+						var value = (c.value || 0).toFixed(0);
+						sum += parseInt(c.value);
+
+						bodyhtml =
+						  bodyhtml +
+						  "<tr><td class='legend-color-guide'><div style='background-color: " +
+						  c.color +
+						  ";'></div></td><td class='key'>" +
+						  c.key +
+						  "</td><td class='value'>" +
+						  value +
+						  "</td></tr>";						  
+					  });
+					  bodyhtml = bodyhtml + "</tbody>";					  
+					  footer = 
+							footer +
+							"<tr><td class='legend-color-guide'><div></div></td><td class='key total'>TOTAL: </td><td class='value'>" +
+							sum +
+							"</td></tr>" + "</tfoot>";
+					  return "<table>" + headerhtml + "" + bodyhtml + footer + "</table>";
+			})
 	    	.headerFormatter(function(d) {return nv.models.axis().tickFormat()(d);})
 			.valueFormatter(d3.format(',')); 
 
