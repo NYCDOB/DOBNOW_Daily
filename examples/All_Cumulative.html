@@ -32,7 +32,7 @@
 </div>
 
 <script>
-    d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/All_Cumulative.csv?token=AESTQKVVG3NSLJQEPMBWRBC44RG5S",function(err,data){ 
+    d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/All_Cumulative.csv",function(err,data){ 
       var historicalBarChart = Object.keys(data[0]).filter(function(k){return k!="metric"}) 	
         .map(function(k){
 
