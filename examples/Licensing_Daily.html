@@ -33,7 +33,7 @@
 
 
 
-d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/Licensing_Daily.csv?token=AESTQKW5V5IOYP44ZR7NHVK44QYTE",function(err,data){	 
+d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/Licensing_Daily.csv?token=AESTQKQBGERZYOY22S5BTBS45WASY",function(err,data){	 
 	var dateFormat = d3.time.format('%x');
       var myData = Object.keys(data[0]).filter(function(k){return k!="day"})
         .map(function(k){
