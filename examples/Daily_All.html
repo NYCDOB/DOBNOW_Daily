@@ -33,7 +33,7 @@
 
 
 
-d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report2/master/Daily_All.csv",function(err,data){	 
+d3.csv("https://raw.githubusercontent.com/NYCDOB/DOBNOW_Daily_Report3/master/Daily_All.csv",function(err,data){	 
 	var dateFormat = d3.time.format('%x');
       var myData = Object.keys(data[0]).filter(function(k){return k!="day"})
         .map(function(k){
